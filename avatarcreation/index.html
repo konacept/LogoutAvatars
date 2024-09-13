@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="turbo-root" content="/LogoutAvatars">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.779519455813">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.5.0.779521141587">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.5.0">
@@ -31,12 +31,12 @@
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.5.0.779519455813" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.5.0.779521141587" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.779519455813" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.5.0.779521141587" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.5.0" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.779519455813" data-turbo-eval="false" defer></script>
-    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.779519455813" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.5.0.779521141587" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.5.0.779521141587" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -253,6 +253,7 @@
 </doc-anchor-target>
 <p>The following is the default configuration for the <code v-pre>LA_Beach</code> avatar:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">LA_Beach.yml</div>
 <pre class="language-yaml"><code v-pre class="language-yaml">displayName: 'Beach'
 model: 'la_beach_model'
 removalTimeUnit: 'minutes'
@@ -322,6 +323,31 @@ permission: 'beach'</code></pre>
 </tbody>
 </table>
 </div>
+<doc-anchor-target id="variants">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#variants">#</doc-anchor-trigger>
+        <span>Variants</span>
+    </h3>
+</doc-anchor-target>
+<p>Since v1.1.0 you can create Avatar variants inside the same avatar configuration file.<br />
+Variants can be used to represent an &quot;upgrade&quot; to the base avatar.<br />
+This is useful if you want to set different options to certain Groups of players without having to copy &amp; paste the same avatar configuration and tweak its options.</p>
+<p>Here&#x27;s how you do it:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<div class="codeblock-title">LA_Beach.yml</div>
+<pre class="language-yaml"><code v-pre class="language-yaml">#...base config...
+
+# Variants below
+
+overrides:
+  vip:
+    permission: 'beach.vip'
+    model: 'la_beach_model_vip'
+    hologram: '&amp;e%player% &amp;bVIP Avatar'</code></pre>
+</doc-codeblock></div>
+<p>In the <code v-pre>overrides</code> section you can define custom variants, in this example we called it <code v-pre>vip</code>, and made it reference to a different model and changed the hologram text, all the other fields from the base configuration were automatically inherited. This variant will be used instead of the base one if a player has the <code v-pre>logoutavatars.avatar.beach.vip</code> permission.</p>
+<p>The only fields than can be overriden are: <code v-pre>removalTimeUnit</code>, <code v-pre>removalTime</code>, <code v-pre>hologram</code>, <code v-pre>hologramY</code>, <code v-pre>model</code>. Attempting to override other fields will take no effect.</p>
+<p>The <code v-pre>permission</code> option is a <strong>must</strong> for variants, if it is not present the whole variant will be ignored.</p>
 <hr>
 <div class="flex mb-6">
     <div class="shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
@@ -336,7 +362,7 @@ permission: 'beach'</code></pre>
             </svg>
         </div>
         <div class="pr-5 ml-3 w-full">
-<p>Remember that you can copy and paste an existing avatar and work based on it.</p>
+<p>ProTip: you can copy and paste an existing avatar config/model and work based on it.</p>
         </div>
     </div>
 </div>
